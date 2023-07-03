@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Programador Web</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        #moving-element {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +41,25 @@
                 </p>
             </div>
         </div>
+        <div id="moving-element"></div>
+     <script>
+        var element = document.getElementById("moving-element");
+        var position = 0;
+        var direction = 1;
+        var colors = ["red", "green", "blue", "yellow", "purple", "orange"];
+        var currentColorIndex = 0;
+         function animate() {
+            position += direction * 4; // Aumentar la velocidad multiplicando por un factor
+            element.style.left = position + "px";
+            element.style.backgroundColor = colors[currentColorIndex];
+             if (position >= window.innerWidth - 50 || position <= 0) {
+                direction *= -1;
+                currentColorIndex = (currentColorIndex + 1) % colors.length;
+            }
+             requestAnimationFrame(animate);
+        }
+         animate();
+    </script>
     </section>
 
     <main>
